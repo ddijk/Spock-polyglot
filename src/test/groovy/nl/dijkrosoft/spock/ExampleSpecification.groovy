@@ -1,9 +1,11 @@
 package nl.dijkrosoft.spock
 
-import spock.lang.Specification
-import spock.lang.Subject
+import nl.dijkrosoft.spock.person.Person
 
-class ExampleSpecification extends Specification {
+class ExampleSpecification extends MySuperGroovy {
+
+
+
     def "should be a simple assertion"() {
         expect:
         1 == 1
@@ -77,4 +79,28 @@ class ExampleSpecification extends Specification {
             primaryColor == "red"
     }
 
+    def "test 'with' syntax"() {
+        when:
+            def person = Person.create("jaap", 20, "utrecht")
+        then:
+             verifyAll(person) {
+                 name == "jaap"
+                 age== 20
+                 city == "utrecht"
+             }
+    }
+
+    def "test shared proxy"() {
+
+        expect: "connect using proxy"
+            proxy.connect() != null
+            proxy.connect() != null
+    }
+
+    def "test shared proxy 2"() {
+
+        expect: "connect using proxy"
+        proxy.connect() != null
+        proxy.connect() != null
+    }
 }
