@@ -16,8 +16,8 @@ public class Polygon {
 
     public void draw() {
 
-        Stream.of(1,2,3,4).forEach(
-                (i)->   renderer.drawline()
+        Stream.of(1, 2, 3, 4, 5, 6, 7).limit(numberOfSides).forEach(
+                (i) -> renderer.drawline()
         );
     }
 }

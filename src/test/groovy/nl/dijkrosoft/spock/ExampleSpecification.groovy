@@ -51,16 +51,30 @@ class ExampleSpecification extends Specification {
         exception.numberOfSides == 0
     }
 
-    def "test calls to Renderer"() {
+    def "test calls to Renderer #sides, each side is drawn separately"() {
         given:
             Renderer renderer = Mock()
-            @Subject
-            Polygon polygon = new Polygon(4, renderer)
+            Polygon polygon = new Polygon(sides, renderer)
         when:
             polygon.draw()
         then:
-            4 * renderer.drawline()
+            sides * renderer.drawline()
 
+        where:
+           sides << [3,4,5]
 
     }
+
+    def "test stub"() {
+
+        given:
+            Palette palette = Stub()
+            palette.getPrimaryColor() >> "red"
+            Renderer renderer = new Renderer(palette)
+        when:
+            def primaryColor =  renderer.getPrimaryColor();
+        then:
+            primaryColor == "red"
+    }
+
 }
