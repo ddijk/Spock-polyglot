@@ -4,7 +4,13 @@ import nl.dijkrosoft.spock.person.Person
 
 class ExampleSpecification extends MySuperGroovy {
 
+    def setupSpec() {
+        println("setting up")
+    }
 
+    def setup() {
+        println("setup")
+    }
 
     def "should be a simple assertion"() {
         expect:
